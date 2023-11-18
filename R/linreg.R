@@ -22,7 +22,6 @@
 #'
 
 linreg = function(formula, data) {
-  attach(data)
   #creates design matrix from formula
   X = model.matrix(formula)
   #subsets formula for response variable

@@ -28,7 +28,6 @@
 
 
 linreg_sum = function(formula, data) {
-  attach(data)
   model = linreg(formula, data) #
   X = model.matrix(formula)
   Y = as.matrix(model.frame(formula)[1])
