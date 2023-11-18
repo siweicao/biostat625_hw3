@@ -31,8 +31,8 @@ The `airquality` dataset contains daily air quality measurements in New York, Ma
 
 ```{r}
 library(linreg)
-data(airquality)
-linreg_airquality=linreg(Temp~Wind+Month+Ozone, data = airquality)
+attach(airquality)
+linreg_airquality = linreg(Temp~Wind+Month+Ozone, data = airquality)
 linreg_airquality
 
 airquality_summary=linreg_sum(Temp~Wind+Month+Ozone, data = airquality)

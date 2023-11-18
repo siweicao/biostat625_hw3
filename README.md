@@ -1,39 +1,266 @@
 
-  <!-- badges: start -->
-  [![R-CMD-check](https://github.com/siweicao/biostat625_hw3/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/siweicao/biostat625_hw3/actions/workflows/R-CMD-check.yaml)
-  [![Codecov test coverage](https://codecov.io/gh/siweicao/biostat625_hw3/branch/main/graph/badge.svg)](https://app.codecov.io/gh/siweicao/biostat625_hw3?branch=main)
-  <!-- badges: end -->
-
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/siweicao/biostat625_hw3/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/siweicao/biostat625_hw3/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/siweicao/biostat625_hw3/branch/main/graph/badge.svg)](https://app.codecov.io/gh/siweicao/biostat625_hw3?branch=main)
+<!-- badges: end -->
 
 # linreg
 
 ## Overview
-linreg is aimed to fit simple and multiple linear regression models. 
+
+linreg is aimed to fit simple and multiple linear regression models.
 
 ## Installation
+
 To install the linreg package, you can use:
 
-```r
+``` r
 #install.packages("devtools")
 devtools::install_github("siweicao/biostat625_hw3", build_vignettes = T)
-
 ```
+
+    ## Downloading GitHub repo siweicao/biostat625_hw3@HEAD
+
+    ## ── R CMD build ─────────────────────────────────────────────────────────────────
+    ## * checking for file ‘/private/var/folders/tw/3pfgqfj56zv2rcgl3g245l300000gn/T/RtmpVyiaK3/remotes584a78a774a2/siweicao-biostat625_hw3-fe8ea47/DESCRIPTION’ ... OK
+    ## * preparing ‘linreg’:
+    ## * checking DESCRIPTION meta-information ... OK
+    ## * installing the package to build vignettes
+    ## * creating vignettes ... OK
+    ## * checking for LF line-endings in source and make files and shell scripts
+    ## * checking for empty or unneeded directories
+    ## Omitted ‘LazyData’ from DESCRIPTION
+    ## * building ‘linreg_0.1.0.tar.gz’
+
+    ## Installing package into '/private/var/folders/tw/3pfgqfj56zv2rcgl3g245l300000gn/T/Rtmp3Rk1Rz/temp_libpath31706dc3bad'
+    ## (as 'lib' is unspecified)
 
 ## Usage (Example using airquality dataset)
-The `airquality` dataset contains daily air quality measurements in New York, May to September 1973. The dataset consists of 6 variables and a total of 153 observations. We can use linreg to determine whether there are linear associations between different variables. 
 
-```r
+The `airquality` dataset contains daily air quality measurements in New
+York, May to September 1973. The dataset consists of 6 variables and a
+total of 153 observations. We can use linreg to determine whether there
+are linear associations between different variables.
+
+``` r
 library(linreg)
-data(airquality)
-linreg_airquality=linreg(Temp~Wind+Month+Ozone, data = airquality)
+attach(airquality)
+linreg_airquality = linreg(Temp~Wind+Month+Ozone, data = airquality)
 linreg_airquality
-
-airquality_summary=linreg_sum(Temp~Wind+Month+Ozone, data = airquality)
-airquality_summary
-
 ```
 
+    ## $call
+    ## linreg(formula = Temp ~ Wind + Month + Ozone, data = airquality)
+    ## 
+    ## $coefficients
+    ## (Intercept)        Wind       Month       Ozone 
+    ##  58.9748041  -0.2423574   1.9586586   0.1705954 
+    ## 
+    ## $residuals
+    ##            1            2            3            4            6            7 
+    ##  -6.96906331  -0.97067191   6.23846154  -7.05170395  -3.93364274  -5.60751736 
+    ##            8            9           11           12           13           14 
+    ##  -9.66487734  -4.26147643   5.71000135  -0.14675648  -2.41495821  -0.51473682 
+    ##           15           16           17           18           19           20 
+    ## -10.63969638  -4.36932238  -5.66005154  -8.33229321  -3.09884867  -6.29377951 
+    ##           21           22           23           24           28           29 
+    ##  -7.58782558   6.37848651  -6.09961176 -10.31886076  -2.78350222   8.16623558 
+    ##           30           31           38           40           41           44 
+    ##  -8.00512996   2.71331826   8.67684486  10.50550367  12.40713424   9.28840965 
+    ##           47           48           49           50           51           62 
+    ##   6.30186646  -0.02198694  -6.90897530   3.01320985   5.55178558 -10.72212676 
+    ##           63           64           66           67           68           69 
+    ##   6.18509975   5.08522143   0.51132484   6.13246586   3.41476342   4.29368444 
+    ##           70           71           73           74           76           77 
+    ##   4.14827000   3.60742229   2.07434279   7.31963554   9.58612897   1.79827313 
+    ##           78           79           80           81           82           85 
+    ##   5.84002838   2.43511859   2.07357264   4.35418625   0.25732571   1.75122813 
+    ##           86           87           88           89           90           91 
+    ##  -4.17085731   7.98695171   7.35191427   3.11920847   6.57826104   1.18992554 
+    ##           92           93           94           95           96           97 
+    ##   0.47914582   1.37497311   8.16510093   6.41984585  -0.27824721   6.17853338 
+    ##           98           99          100          101          104          105 
+    ##   2.21147549  -5.48728095   2.66921861  -1.47070665   6.63684016   5.36636645 
+    ##          106          108          109          110          111          112 
+    ##  -3.38190640   1.09910994  -4.18234918  -0.77432190   0.70916584  -1.65398871 
+    ##          113          114          116          117          118          120 
+    ##   2.52996378  -0.71372038  -0.96999854 -21.48008346   0.84132289  11.74154428 
+    ##          121          122          123          124          125          126 
+    ##  -0.21690695   8.55276599   6.38217060  -0.30762284   3.32685092   4.62240588 
+    ##          127          128          129          130          131          132 
+    ##   1.98793211   4.17273011   5.69475590   2.62705660  -0.03014401  -2.54353879 
+    ##          133          134          135          136          137          138 
+    ##  -5.34615384   0.50219675  -0.42869477  -2.85255056  -4.49639407  -5.03336121 
+    ##          139          140          141          142          143          144 
+    ##  -4.77785319  -9.32891617  -0.32419008 -10.20073941   4.60660173 -11.76676807 
+    ##          145          146          147          148          149          151 
+    ##  -7.29673715   0.75211588  -6.30061772 -11.96793389 -10.04832691  -0.52535590 
+    ##          152          153 
+    ##  -1.73458906  -9.22752896 
+    ## 
+    ## $rank
+    ## [1] 4
+    ## 
+    ## $fitted.values
+    ##         1         2         3         4         6         7         8         9 
+    ##  73.96906  72.97067  67.76154  69.05170  69.93364  70.60752  68.66488  65.26148 
+    ##        11        12        13        14        15        16        17        18 
+    ##  68.29000  69.14676  68.41496  68.51474  68.63970  68.36932  71.66005  65.33229 
+    ##        19        20        21        22        23        24        28        29 
+    ##  71.09885  68.29378  66.58783  66.62151  67.09961  71.31886  69.78350  72.83376 
+    ##        30        31        38        40        41        44        47        48 
+    ##  87.00513  73.28668  73.32316  79.49450  74.59287  72.71159  70.69813  72.02199 
+    ##        49        50        51        62        63        64        66        67 
+    ##  71.90898  69.98679  70.44821  94.72213  78.81490  75.91478  82.48868  76.86753 
+    ##        68        69        70        71        73        74        76        77 
+    ##  84.58524  87.70632  87.85173  85.39258  70.92566  73.68036  70.41387  79.20173 
+    ##        78        79        80        81        82        85        86        87 
+    ##  76.15997  81.56488  84.92643  80.64581  73.74267  84.24877  89.17086  74.01305 
+    ##        88        89        90        91        92        93        94        95 
+    ##  78.64809  84.88079  79.42174  81.81007  80.52085  79.62503  72.83490  75.58015 
+    ##        96        97        98        99       100       101       104       105 
+    ##  86.27825  78.82147  84.78852  94.48728  87.33078  91.47071  79.36316  76.63363 
+    ##       106       108       109       110       111       112       113       114 
+    ##  83.38191  75.90089  83.18235  76.77432  77.29083  79.65399  74.47004  72.71372 
+    ##       116       117       118       120       121       122       123       124 
+    ##  79.97000 102.48008  85.15868  85.25846  94.21691  87.44723  87.61783  91.30762 
+    ##       125       126       127       128       129       130       131       132 
+    ##  88.67315  88.37759  91.01207  82.82727  78.30524  77.37294  78.03014  77.54354 
+    ##       133       134       135       136       137       138       139       140 
+    ##  78.34615  80.49780  76.42869  79.85255  75.49639  76.03336  82.77785  76.32892 
+    ##       141       142       143       144       145       146       147       148 
+    ##  76.32419  78.20074  77.39340  75.76677  78.29674  80.24788  75.30062  74.96793 
+    ##       149       151       152       153 
+    ##  80.04833  75.52536  77.73459  77.22753 
+    ## 
+    ## $df.residual
+    ## [1] 112
+    ## 
+    ## $terms
+    ## Temp ~ Wind + Month + Ozone
+    ## attr(,"variables")
+    ## list(Temp, Wind, Month, Ozone)
+    ## attr(,"factors")
+    ##       Wind Month Ozone
+    ## Temp     0     0     0
+    ## Wind     1     0     0
+    ## Month    0     1     0
+    ## Ozone    0     0     1
+    ## attr(,"term.labels")
+    ## [1] "Wind"  "Month" "Ozone"
+    ## attr(,"order")
+    ## [1] 1 1 1
+    ## attr(,"intercept")
+    ## [1] 1
+    ## attr(,"response")
+    ## [1] 1
+    ## attr(,".Environment")
+    ## <environment: 0x7fb16b10af18>
+    ## 
+    ## attr(,"class")
+    ## [1] "linreg"
 
+``` r
+airquality_summary=linreg_sum(Temp~Wind+Month+Ozone, data = airquality)
+airquality_summary
+```
 
-
-
+    ## $call
+    ## linreg_sum(formula = Temp ~ Wind + Month + Ozone, data = airquality)
+    ## 
+    ## $sum_residuals
+    ##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+    ## -21.4801  -4.2884   0.4907   0.0000   4.6106  12.4071 
+    ## 
+    ## $coefficients
+    ##               Estimate Std. Error   t value     Pr(>|t|)
+    ## (Intercept) 58.9748041 4.10572189 14.364052 0.000000e+00
+    ## Wind        -0.2423574 0.20301852 -1.193770 2.350904e-01
+    ## Month        1.9586586 0.39829839  4.917566 3.026488e-06
+    ## Ozone        0.1705954 0.02182522  7.816434 3.219647e-12
+    ## 
+    ## $sigma
+    ## [1] 6.159399
+    ## 
+    ## $r.squared
+    ## [1] 0.5893444
+    ## 
+    ## $adj.r.squared
+    ## [1] 0.5783447
+    ## 
+    ## $fstatistic
+    ##     value     numdf     dendf 
+    ##  53.57822   3.00000 112.00000 
+    ## 
+    ## $f.stat.pvalue
+    ## [1] 0
+    ## 
+    ## $residuals
+    ##            1            2            3            4            6            7 
+    ##  -6.96906331  -0.97067191   6.23846154  -7.05170395  -3.93364274  -5.60751736 
+    ##            8            9           11           12           13           14 
+    ##  -9.66487734  -4.26147643   5.71000135  -0.14675648  -2.41495821  -0.51473682 
+    ##           15           16           17           18           19           20 
+    ## -10.63969638  -4.36932238  -5.66005154  -8.33229321  -3.09884867  -6.29377951 
+    ##           21           22           23           24           28           29 
+    ##  -7.58782558   6.37848651  -6.09961176 -10.31886076  -2.78350222   8.16623558 
+    ##           30           31           38           40           41           44 
+    ##  -8.00512996   2.71331826   8.67684486  10.50550367  12.40713424   9.28840965 
+    ##           47           48           49           50           51           62 
+    ##   6.30186646  -0.02198694  -6.90897530   3.01320985   5.55178558 -10.72212676 
+    ##           63           64           66           67           68           69 
+    ##   6.18509975   5.08522143   0.51132484   6.13246586   3.41476342   4.29368444 
+    ##           70           71           73           74           76           77 
+    ##   4.14827000   3.60742229   2.07434279   7.31963554   9.58612897   1.79827313 
+    ##           78           79           80           81           82           85 
+    ##   5.84002838   2.43511859   2.07357264   4.35418625   0.25732571   1.75122813 
+    ##           86           87           88           89           90           91 
+    ##  -4.17085731   7.98695171   7.35191427   3.11920847   6.57826104   1.18992554 
+    ##           92           93           94           95           96           97 
+    ##   0.47914582   1.37497311   8.16510093   6.41984585  -0.27824721   6.17853338 
+    ##           98           99          100          101          104          105 
+    ##   2.21147549  -5.48728095   2.66921861  -1.47070665   6.63684016   5.36636645 
+    ##          106          108          109          110          111          112 
+    ##  -3.38190640   1.09910994  -4.18234918  -0.77432190   0.70916584  -1.65398871 
+    ##          113          114          116          117          118          120 
+    ##   2.52996378  -0.71372038  -0.96999854 -21.48008346   0.84132289  11.74154428 
+    ##          121          122          123          124          125          126 
+    ##  -0.21690695   8.55276599   6.38217060  -0.30762284   3.32685092   4.62240588 
+    ##          127          128          129          130          131          132 
+    ##   1.98793211   4.17273011   5.69475590   2.62705660  -0.03014401  -2.54353879 
+    ##          133          134          135          136          137          138 
+    ##  -5.34615384   0.50219675  -0.42869477  -2.85255056  -4.49639407  -5.03336121 
+    ##          139          140          141          142          143          144 
+    ##  -4.77785319  -9.32891617  -0.32419008 -10.20073941   4.60660173 -11.76676807 
+    ##          145          146          147          148          149          151 
+    ##  -7.29673715   0.75211588  -6.30061772 -11.96793389 -10.04832691  -0.52535590 
+    ##          152          153 
+    ##  -1.73458906  -9.22752896 
+    ## 
+    ## $df
+    ## [1]   4 112   4
+    ## 
+    ## $terms
+    ## Temp ~ Wind + Month + Ozone
+    ## attr(,"variables")
+    ## list(Temp, Wind, Month, Ozone)
+    ## attr(,"factors")
+    ##       Wind Month Ozone
+    ## Temp     0     0     0
+    ## Wind     1     0     0
+    ## Month    0     1     0
+    ## Ozone    0     0     1
+    ## attr(,"term.labels")
+    ## [1] "Wind"  "Month" "Ozone"
+    ## attr(,"order")
+    ## [1] 1 1 1
+    ## attr(,"intercept")
+    ## [1] 1
+    ## attr(,"response")
+    ## [1] 1
+    ## attr(,".Environment")
+    ## <environment: 0x7fb16b10af18>
+    ## 
+    ## attr(,"class")
+    ## [1] "summary.linreg"
