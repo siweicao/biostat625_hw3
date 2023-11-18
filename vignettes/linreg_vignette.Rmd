@@ -39,6 +39,8 @@ Suppose we want to fit a linear regression model to find the association between
 The `linreg(formula,data)` function requires inputs of formula and data which is based off of the `lm()` function in base R. For our example, the formula would be `Temp~Wind+Ozone+Month` based on the variable names in the dataset and data would be `airquality`.
 
 ```{r, message = FALSE}
+data=airquality
+attach(data)
 linreg(Temp~Wind+Month+Ozone,airquality)
 ```
 
