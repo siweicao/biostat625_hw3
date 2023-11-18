@@ -25,7 +25,7 @@ returns a list with the following elements:
 Fits univariate or multivariate linear regression models
 }
 \examples{
-# linreg(Temp~Wind+Month+Ozone,airquality)
+linreg(Temp~Wind+Month+Ozone,airquality)
 
 
 }
