@@ -6,17 +6,22 @@ linreg=function(formula,data) {
   p=ncol(X)
   betahat=solve(t(X)%*%X)%*%t(X)%*%Y
   Yhat=X%*%betahat
-  epsilonhat=Y-Yhat
   call=match.call(linreg)
   coefficients=c(betahat)
   names(coefficients)=row.names(betahat)
-  residuals=as.vector(epsilonhat)
-  names(residuals)=c(1:n)
-  fitted.values=as.vector(Yhat)
-  names(fitted.values)=c(1:n)
+  residuals=t(Y-Yhat)
+  names=colnames(residuals)
+  residuals=as.vector(residuals)
+  names(residuals)=names
+  fitted.values=t(Yhat)
+  names=colnames(fitted.values)
+  fitted.values=as.vector(fitted.values)
+  names(fitted.values)=names
 
   linreg_list=list(call=call,coefficients=coefficients,residuals=residuals,rank=p,fitted.values=fitted.values,
                    df.residual=(n-p),terms=terms(formula))
 
   return (linreg_list)
 }
+
+
