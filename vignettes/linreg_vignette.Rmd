@@ -1,5 +1,7 @@
 ---
 title: "linreg_vignette"
+description: >
+  How to use linreg to fit linear regression models
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{linreg_vignette}
@@ -17,3 +19,31 @@ knitr::opts_chunk$set(
 ```{r setup}
 library(linreg)
 ```
+
+## Introduction
+
+In this vignette, we demonstrate how to use the `linreg()` function to fit a linear regression model. As an example, we will use the `airquality` dataset. The `airquality` dataset is comprised of 153 observations and 6 variables including:
+
+-   Ozone (ppb)
+-   Solar Radiation (lang)
+-   Wind (mph)
+-   Temp (F)
+-   Month (1-12)
+-   Day of Month (1-31)
+
+## Using `linreg()` to fit model
+
+Suppose we want to fit a linear regression model to find the association between temperature (outcome) and wind (covariate). Additionally, we want to adjust for Ozone and Month.
+
+The `linreg(formula,data)` function requires inputs of formula and data which is based off of the `lm()` function in base R. For our example, the formula would be `Temp~Wind+Ozone+Month based on the variable names in the dataset.
+
+```{r}
+
+```
+
+
+
+
+
+
+

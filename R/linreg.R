@@ -7,7 +7,7 @@ linreg=function(formula,data) {
   betahat=solve(t(X)%*%X)%*%t(X)%*%Y
   Yhat=X%*%betahat
   epsilonhat=Y-Yhat
-  call=call("linreg",formula=formula,data=quote(data))
+  call=match.call(linreg)
   coefficients=c(betahat)
   names(coefficients)=row.names(betahat)
   residuals=as.vector(epsilonhat)
