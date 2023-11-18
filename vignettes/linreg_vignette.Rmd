@@ -56,6 +56,8 @@ model$coefficients
 
 ```
 
+
+
 ## Comparing `linreg()` to `lm()`
 
 To compare the correctness of the `linreg()` function to the original `lm()` function, we can use the `all.equal()` function. To demonstrate this, we will continue using the `airquality` dataset.
@@ -71,10 +73,10 @@ all.equal(linreg_test$df.residual,lm_test$df.residual)
 all.equal(linreg_test$terms,lm_test$terms)
 ```
 
-To compare the efficiency of `linreg()` and the `lm()` functions, we can use the ``
+To compare the efficiency of `linreg()` and the `lm()` functions, we can use the `bench::mark()` function.
 
 ```{r}
-bench::mark(linreg(Temp~Wind+Month+Ozone,airquality),lm(Temp~Wind+Month+Ozone,airquality))
+bench::mark(linreg(Temp~Wind+Month+Ozone, airquality), lm(Temp~Wind+Month+Ozone,airquality), check = FALSE)
 ```
 
 
