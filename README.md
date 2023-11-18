@@ -15,14 +15,14 @@ To install the linreg package, you can use:
 
 ```r
 #install.packages("devtools")
-devtools::install_github("siweicao/biostat625_hw3")
+devtools::install_github("siweicao/biostat625_hw3", build_vignettes = T)
 
 ```
 
 ## Usage (Example using airquality dataset)
 The `airquality` dataset contains daily air quality measurements in New York, May to September 1973. The dataset consists of 6 variables and a total of 153 observations. We can use linreg to determine whether there are linear associations between different variables. 
 
-```{r}
+```r
 library(linreg)
 data(airquality)
 linreg_airquality=linreg(Temp~Wind+Month+Ozone, data = airquality)

@@ -56,6 +56,19 @@ model$coefficients
 
 ```
 
+## Using `linreg_sum()` to obtain summary of model
+
+Using the same example above, suppose we want to obtain a summary of our linear regression model with more statistical details. The `linreg_sum()` function requires the same inputs of `linreg()`.
+
+```{r, message=FALSE}
+linreg_sum(Temp~Wind+Month+Ozone,airquality)
+```
+
+Similar to `linreg()`, the `linreg_sum()` also outputs all the quantities of the function. All outputs are that are shown in the output of `summary(lm({model}))` are included in the `linreg_sum()` function. You can also subset specific quantities you're looking for.
+
+```{r, message=FALSE}
+linreg_sum(Temp~Wind+Month+Ozone,airquality)$r.squared
+```
 
 
 ## Comparing `linreg()` to `lm()`
