@@ -14,35 +14,40 @@
 #' \item{df.residual}{the residual degrees of freedom, that is number of observations minus number of predictor variables}
 #' \item{terms}{the terms objects that were used in model}
 #'
+#'@export
+#'
 #' @examples
-#' # linreg(Temp~Wind+Month+Ozone,airquality)
+#' linreg(Temp~Wind+Month+Ozone,airquality)
 #'
 #'
 
-linreg=function(formula,data) {
+linreg = function(formula, data) {
   attach(data)
-  X=model.matrix(formula)
-  Y=as.matrix(model.frame(formula)[1])
-  n=nrow(X)
-  p=ncol(X)
-  betahat=solve(t(X)%*%X)%*%t(X)%*%Y
-  Yhat=X%*%betahat
-  call=match.call(linreg)
-  coefficients=c(betahat)
-  names(coefficients)=row.names(betahat)
-  residuals=t(Y-Yhat)
-  names=colnames(residuals)
-  residuals=as.vector(residuals)
-  names(residuals)=names
-  fitted.values=t(Yhat)
-  names=colnames(fitted.values)
-  fitted.values=as.vector(fitted.values)
-  names(fitted.values)=names
-
-  linreg_list=list(call=call,coefficients=coefficients,residuals=residuals,rank=p,fitted.values=fitted.values,
-                   df.residual=(n-p),terms=terms(formula))
-
+  #creates design matrix from formula
+  X = model.matrix(formula)
+  #subsets formula for response variable
+  Y = as.matrix(model.frame(formula)[1])
+  n = nrow(X)
+  p = ncol(X)
+  #solves to find coefficient estimates
+  betahat = solve(t(X)%*%X)%*%t(X)%*%Y
+  Yhat = X%*%betahat
+  call = match.call(linreg)
+  coefficients = c(betahat)
+  names(coefficients) = row.names(betahat)
+  residuals = t(Y-Yhat)
+  names = colnames(residuals)
+  residuals = as.vector(residuals)
+  names(residuals) = names
+  fitted.values = t(Yhat)
+  names = colnames(fitted.values)
+  fitted.values = as.vector(fitted.values)
+  names(fitted.values) = names
+  linreg_list = list(call = call, coefficients = coefficients, residuals = residuals, rank = p, fitted.values
+                     = fitted.values, df.residual = (n-p), terms = terms(formula))
+  class(linreg_list) = 'linreg'
   return (linreg_list)
 }
+
 
 
