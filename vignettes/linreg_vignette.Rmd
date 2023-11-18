@@ -35,11 +35,51 @@ In this vignette, we demonstrate how to use the `linreg()` function to fit a lin
 
 Suppose we want to fit a linear regression model to find the association between temperature (outcome) and wind (covariate). Additionally, we want to adjust for Ozone and Month.
 
-The `linreg(formula,data)` function requires inputs of formula and data which is based off of the `lm()` function in base R. For our example, the formula would be `Temp~Wind+Ozone+Month based on the variable names in the dataset.
+The `linreg(formula,data)` function requires inputs of formula and data which is based off of the `lm()` function in base R. For our example, the formula would be `Temp~Wind+Ozone+Month` based on the variable names in the dataset and data would be `airquality`.
 
-```{r}
+```{r, message = FALSE}
+linreg(Temp~Wind+Month+Ozone,airquality)
+```
+
+The `linreg()` function outputs all quantities of the function unlike the `lm()` function in base R. All components that are shown when the `lm()` function is called are shown near the top of the `linreg()` function. It is also possible to subset a specific quantity similar to the `lm()` function.
+
+To select only the coefficients in `linreg()` output, we use the `$` to subset a specific quanitity.
+
+```{r, message = FALSE}
+#method using subset directly after function
+linreg(Temp~Wind+Month+Ozone,airquality)$coefficients
+
+#method assigning model to variable
+model = linreg(Temp~Wind+Month+Ozone,airquality)
+model$coefficients
 
 ```
+
+## Comparing `linreg()` to `lm()`
+
+To compare the correctness of the `linreg()` function to the original `lm()` function, we can use the `all.equal()` function. To demonstrate this, we will continue using the `airquality` dataset.
+
+```{r, message=FALSE}
+linreg_test = linreg(Temp~Wind+Month+Ozone,airquality)
+lm_test = lm(Temp~Wind+Month+Ozone,airquality)
+all.equal(linreg_test$coefficients,lm_test$coefficients)
+all.equal(linreg_test$residuals,lm_test$residuals)
+all.equal(linreg_test$rank,lm_test$rank)
+all.equal(linreg_test$fitted.values,lm_test$fitted.values)
+all.equal(linreg_test$df.residual,lm_test$df.residual)
+
+
+linreg_test$residuals
+lm_test$fitted.values
+
+```
+
+
+
+
+
+
+
 
 
 
