@@ -2,6 +2,10 @@
   <!-- badges: start -->
   [![R-CMD-check](https://github.com/siweicao/biostat625_hw3/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/siweicao/biostat625_hw3/actions/workflows/R-CMD-check.yaml)
   <!-- badges: end -->
+    <!-- badges: start -->
+  [![Codecov test coverage](https://codecov.io/gh/siweicao/biostat625_hw3/branch/main/graph/badge.svg)](https://app.codecov.io/gh/siweicao/biostat625_hw3?branch=main)
+  <!-- badges: end -->
+
 
 # linreg
 
