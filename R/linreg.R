@@ -1,3 +1,24 @@
+#' Linear Regression
+#'
+#' Fits univariate or multivariate linear regression models
+#'
+#' @param formula a formula with the form 'response~covariate+covariate...'.
+#' @param data a data frame containing the variables specified in 'formula'.
+#'
+#' @return returns a list with the following elements:
+#' \item{call}{the function that was called}
+#' \item{coefficients}{the coefficients estimates for each predictior variable specified in model}
+#' \item{residuals}{a vector of residuals, that is response minus fitted values, with each residual specified by observation}
+#' \item{rank}{the numeric rank for the model}
+#' \item{fitted.values}{the fitted values}
+#' \item{df.residual}{the residual degrees of freedom, that is number of observations minus number of predictor variables}
+#' \item{terms}{the terms objects that were used in model}
+#'
+#' @examples
+#' # linreg(Temp~Wind+Month+Ozone,airquality)
+#'
+#'
+
 linreg=function(formula,data) {
   attach(data)
   X=model.matrix(formula)
