@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 library(linreg)
+library(bench)
 ```
 
 ## Introduction
@@ -67,14 +68,14 @@ all.equal(linreg_test$residuals,lm_test$residuals)
 all.equal(linreg_test$rank,lm_test$rank)
 all.equal(linreg_test$fitted.values,lm_test$fitted.values)
 all.equal(linreg_test$df.residual,lm_test$df.residual)
-
-
-linreg_test$residuals
-lm_test$fitted.values
-
+all.equal(linreg_test$terms,lm_test$terms)
 ```
 
+To compare the efficiency of `linreg()` and the `lm()` functions, we can use the ``
 
+```{r}
+bench::mark(linreg(Temp~Wind+Month+Ozone,airquality),lm(Temp~Wind+Month+Ozone,airquality))
+```
 
 
 
