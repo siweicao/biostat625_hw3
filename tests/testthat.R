@@ -9,6 +9,8 @@
 library(testthat)
 library(linreg)
 
+data=airquality
+attach(data)
 linreg_model=linreg(Temp~Wind+Month+Ozone, airquality)
 lm_model=lm(Temp~Wind+Month+Ozone, airquality)
 lm_sum=summary(lm_model)
