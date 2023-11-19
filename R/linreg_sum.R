@@ -22,8 +22,7 @@
 #'
 #' @examples
 #' attach(airquality)
-#' linreg_sum(Temp~Wind+Month+Ozone,airquality)
-#'
+#'  linreg_sum(Temp~Wind+Month+Ozone,airquality)
 #'
 #'
 
