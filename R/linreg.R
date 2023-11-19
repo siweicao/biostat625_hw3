@@ -26,9 +26,9 @@
 
 linreg = function(formula, data) {
   #creates design matrix from formula
-  X = model.matrix(formula)
+  X = model.matrix(formula,data)
   #subsets formula for response variable
-  Y = as.matrix(model.frame(formula)[1])
+  Y = as.matrix(model.frame(formula,data)[1])
   n = nrow(X)
   p = ncol(X)
   #solves to find coefficient estimates
@@ -50,6 +50,8 @@ linreg = function(formula, data) {
   class(linreg_list) = 'linreg'
   return (linreg_list)
 }
+
+linreg(Temp~Wind+Month+Ozone,airquality)
 
 
 
