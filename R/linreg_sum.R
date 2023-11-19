@@ -30,8 +30,8 @@
 
 linreg_sum = function(formula, data) {
   model = linreg(formula, data) #
-  X = model.matrix(formula)
-  Y = as.matrix(model.frame(formula)[1])
+  X = model.matrix(formula,data)
+  Y = as.matrix(model.frame(formula,data)[1])
   n = nrow(X)
   p = ncol(X)
   betahat = solve(t(X)%*%X)%*%t(X)%*%Y
