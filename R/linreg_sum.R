@@ -29,11 +29,14 @@
 #'
 
 linreg_sum = function(formula, data) {
-  model = linreg(formula, data) #
+  #creates design matrix from formula
+  model = linreg(formula, data)
+  #subsets formula for response variable
   X = model.matrix(formula,data)
   Y = as.matrix(model.frame(formula,data)[1])
   n = nrow(X)
   p = ncol(X)
+  #solves to find coefficient estimates
   betahat = solve(t(X)%*%X)%*%t(X)%*%Y
   Yhat = X%*%betahat
   epsilonhat = Y-Yhat
@@ -54,10 +57,10 @@ linreg_sum = function(formula, data) {
   names(f_stat_vec) = c("value", "numdf", "dendf")
   df = c(p, n-p, p)
   r_squared = SSR/(SSR+SSE)
-  #creates matrix of
+  #creates matrix of estimates, standard error, t-value, and p-value
   coefficients = cbind(Estimate = c(betahat), "Std. Error" = se_betahat, "t value" = t_stat,
                        "Pr(>|t|)" = pvalue)
-
+  #creates list of all quantities to be shown in output and allows subsetting
   sum_list = list(call = match.call(linreg_sum), sum_residuals = summary(model$residuals), coefficients =
                     coefficients, sigma = sigma, r.squared = r_squared, adj.r.squared =
                     1-((SSE/(n-p))/((SSR+SSE)/(n-1))), fstatistic = f_stat_vec, f.stat.pvalue = f_statpv,

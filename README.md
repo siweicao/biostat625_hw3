@@ -9,7 +9,11 @@ coverage](https://codecov.io/gh/siweicao/biostat625_hw3/branch/main/graph/badge.
 
 ## Overview
 
-linreg is aimed to fit simple and multiple linear regression models.
+linreg is aimed to fit simple and multiple linear regression models. The
+linreg package contains two functions including `linreg()` and
+`linreg_sum()` which fit linear regression models and provide quantities
+about the model such as coefficient estimates, standard errors, and
+t-statistics.
 
 ## Installation
 
@@ -20,12 +24,15 @@ To install the linreg package, you can use:
 devtools::install_github("siweicao/biostat625_hw3", build_vignettes = T)
 ```
 
+For more information on how to use this package, please see the vignette
+and help pages.
+
 ## Usage (Example using airquality dataset)
 
 The `airquality` dataset contains daily air quality measurements in New
 York, May to September 1973. The dataset consists of 6 variables and a
-total of 153 observations. We can use linreg to determine whether there
-are linear associations between different variables.
+total of 153 observations. We can use `linreg()` to determine whether
+there are linear associations between different variables.
 
 ``` r
 library(linreg)
@@ -140,10 +147,13 @@ linreg_airquality
     ## attr(,"response")
     ## [1] 1
     ## attr(,".Environment")
-    ## <environment: 0x7fc4cc057318>
+    ## <environment: 0x7fbe60f91118>
     ## 
     ## attr(,"class")
     ## [1] "linreg"
+
+Additionally, we can use the `linreg_sum()` for further detailed
+statistical quanitities.
 
 ``` r
 airquality_summary=linreg_sum(Temp~Wind+Month+Ozone, data = airquality)
@@ -244,7 +254,7 @@ airquality_summary
     ## attr(,"response")
     ## [1] 1
     ## attr(,".Environment")
-    ## <environment: 0x7fc4cc057318>
+    ## <environment: 0x7fbe60f91118>
     ## 
     ## attr(,"class")
     ## [1] "summary.linreg"

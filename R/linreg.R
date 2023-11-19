@@ -45,6 +45,7 @@ linreg = function(formula, data) {
   names = colnames(fitted.values)
   fitted.values = as.vector(fitted.values)
   names(fitted.values) = names
+  #creates list of all quantities to be shown in output and allows subsetting
   linreg_list = list(call = call, coefficients = coefficients, residuals = residuals, rank = p, fitted.values
                      = fitted.values, df.residual = (n-p), terms = terms(formula))
   class(linreg_list) = 'linreg'

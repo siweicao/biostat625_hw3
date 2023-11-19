@@ -88,6 +88,8 @@ all.equal(linreg_test$df.residual,lm_test$df.residual)
 all.equal(linreg_test$terms,lm_test$terms)
 ```
 
+As shown in the results, the `linreg()` function has the same capabilities as the `lm()` function.
+
 To compare the efficiency of `linreg()` and the `lm()` functions, we can use the `bench::mark()` function.
 
 ```{r}
@@ -113,6 +115,9 @@ all.equal(linreg_test$fstatistic,lm_test$fstatistic)
 all.equal(linreg_test$df,lm_test$df)
 all.equal(linreg_test$terms,lm_test$terms)
 ```
+
+As shown in the results, the `linreg_sum()`function has the same capabilities as the `summary(lm())` function.
+
 
 To compare the efficiency of `linreg_sum()` and the `summary(lm())` functions, we can use the `bench::mark()` function.
 
