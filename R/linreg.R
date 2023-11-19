@@ -17,8 +17,9 @@
 #'@export
 #'
 #' @examples
+#' data(airquality)
 #' attach(airquality)
-#'  linreg(Temp~Wind+Month+Ozone,airquality)
+#' linreg(Temp~Wind+Month+Ozone,airquality)
 #'
 #'
 #'
