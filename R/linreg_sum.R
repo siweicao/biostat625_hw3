@@ -21,11 +21,12 @@
 #' @export
 #'
 #' @examples
+#' data(airquality)
 #' attach(airquality)
-#'  linreg_sum(Temp~Wind+Month+Ozone,airquality)
+#' linreg_sum(Temp~Wind+Month+Ozone,airquality)
 #'
 #'
-
+#'
 
 linreg_sum = function(formula, data) {
   model = linreg(formula, data) #
