@@ -94,13 +94,34 @@ To compare the efficiency of `linreg()` and the `lm()` functions, we can use the
 bench::mark(linreg(Temp~Wind+Month+Ozone, airquality), lm(Temp~Wind+Month+Ozone,airquality), check = FALSE)
 ```
 
+Based on the results, the times for `linreg()` and 'lm()' appear to be similar with the `linreg()` function being about 50 ms slower.
 
 
+## Comparing `linreg_sum()` to `summary(lm())`
+
+To compare the correctness of the `linreg_sum()` function to the `summary(lm())` function, we can use the `all.equal()` function. To demonstrate this, we will continue using the `airquality` dataset.
+
+```{r, message=FALSE}
+linreg_test = linreg_sum(Temp~Wind+Month+Ozone,airquality)
+lm_test = summary(lm(Temp~Wind+Month+Ozone,airquality))
+all.equal(linreg_test$coefficients,lm_test$coefficients)
+all.equal(linreg_test$residuals,lm_test$residuals)
+all.equal(linreg_test$sigma,lm_test$sigma)
+all.equal(linreg_test$r.squared,lm_test$r.squared)
+all.equal(linreg_test$adj.r.squared,lm_test$adj.r.squared)
+all.equal(linreg_test$fstatistic,lm_test$fstatistic)
+all.equal(linreg_test$df,lm_test$df)
+all.equal(linreg_test$terms,lm_test$terms)
+```
+
+To compare the efficiency of `linreg_sum()` and the `summary(lm())` functions, we can use the `bench::mark()` function.
 
 
+```{r}
+bench::mark(linreg_sum(Temp~Wind+Month+Ozone, airquality), summary(lm(Temp~Wind+Month+Ozone,airquality)), check = FALSE)
+```
 
-
-
+Based on the results, the `linreg_sum()` function is much slower than the `summary(lm())` function.
 
 
 

@@ -51,7 +51,5 @@ linreg = function(formula, data) {
   return (linreg_list)
 }
 
-linreg(Temp~Wind+Month+Ozone,airquality)
-
 
 
