@@ -20,22 +20,6 @@ To install the linreg package, you can use:
 devtools::install_github("siweicao/biostat625_hw3", build_vignettes = T)
 ```
 
-    ## Downloading GitHub repo siweicao/biostat625_hw3@HEAD
-
-    ## ── R CMD build ─────────────────────────────────────────────────────────────────
-    ## * checking for file ‘/private/var/folders/tw/3pfgqfj56zv2rcgl3g245l300000gn/T/RtmpVyiaK3/remotes584a78a774a2/siweicao-biostat625_hw3-fe8ea47/DESCRIPTION’ ... OK
-    ## * preparing ‘linreg’:
-    ## * checking DESCRIPTION meta-information ... OK
-    ## * installing the package to build vignettes
-    ## * creating vignettes ... OK
-    ## * checking for LF line-endings in source and make files and shell scripts
-    ## * checking for empty or unneeded directories
-    ## Omitted ‘LazyData’ from DESCRIPTION
-    ## * building ‘linreg_0.1.0.tar.gz’
-
-    ## Installing package into '/private/var/folders/tw/3pfgqfj56zv2rcgl3g245l300000gn/T/Rtmp3Rk1Rz/temp_libpath31706dc3bad'
-    ## (as 'lib' is unspecified)
-
 ## Usage (Example using airquality dataset)
 
 The `airquality` dataset contains daily air quality measurements in New
@@ -156,7 +140,7 @@ linreg_airquality
     ## attr(,"response")
     ## [1] 1
     ## attr(,".Environment")
-    ## <environment: 0x7fb16b10af18>
+    ## <environment: 0x7fc4cc057318>
     ## 
     ## attr(,"class")
     ## [1] "linreg"
@@ -260,7 +244,7 @@ airquality_summary
     ## attr(,"response")
     ## [1] 1
     ## attr(,".Environment")
-    ## <environment: 0x7fb16b10af18>
+    ## <environment: 0x7fc4cc057318>
     ## 
     ## attr(,"class")
     ## [1] "summary.linreg"
